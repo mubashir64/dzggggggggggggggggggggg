@@ -50,5 +50,72 @@
         <div class="video-list-container" id="videosList"></div>
     </div>
     <script src="Videoplaylist.js"></script>
+
+
+
+
+<script type='text/javascript'> 
+//<![CDATA[ 
+var message="NoRightClicking is allowed in our website"; 
+function arpianDisableClick() { 
+if (document.all) { 
+return false; 
+} 
+} 
+function arpianNoRightClick(e) { 
+if (document.layers||(document.getElementById&&!document.all)) { 
+if (e.which==2||e.which==3) { 
+return false;
+} 
+} 
+} 
+if (document.layers) { 
+document.captureEvents(Event.MOUSEDOWN); 
+document.onmousedown=arpianNoRightClick; 
+} else{ 
+document.onmouseup=arpianNoRightClick; 
+document.oncontextmenu=arpianDisableClick; 
+} 
+document.oncontextmenu=new Function("return false"); 
+
+// disable viewing page source
+document.onkeydown = function(e) {
+var message='Content is protected\nYou cannot view the page source. please refresh this page';
+if (e.ctrlKey &&
+(e.keyCode === 67 ||
+e.keyCode === 86 ||
+e.keyCode === 85 ||
+e.keyCode === 117)) {
+return false;
+} else {
+return true;
+}
+};
+$(document).keypress('u',function(e) {
+if(e.ctrlKey)
+{
+return false;
+}
+else
+{
+return true;
+}
+});
+
+//disable F12 Key and Ctrl + shift + I combination
+$(document).keydown(function (event) {
+var message = 'Content is protected\nYou cannot view the Dev Tools.';
+if (event.keyCode == 123) { // Prevent F12
+return false;
+} else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+return false;
+}
+});
+//]]>
+</script>
+
+    
+
+    
 </body>
 </html>
